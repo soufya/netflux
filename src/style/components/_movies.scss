@@ -1,0 +1,75 @@
+.moviesGrid {
+    display: flex;
+    @include media("<=phone") {
+        flex-flow: row wrap;
+        justify-content: start;
+    }
+    @include media(">phone", "<desktop") {
+        flex-flow: row nowrap;
+        justify-content: start;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+    @include media(">=desktop") {
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+    li {
+        margin: .5rem;
+        max-width: 19rem;
+        @include media(">=desktop") {
+            margin-bottom: 3rem;
+        }
+    }
+}
+.movie {
+    position: relative;
+    img {
+        max-width: 100%;
+    }
+    &:hover {
+        .movie-description {
+            opacity: 1;
+        }    
+    }
+    .movie-description {
+        opacity: 0;
+        transition: opacity .25s ease-in-out;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        text-align: right;
+        padding: $spacing-basic;
+        color: $white;
+        font-weight: bold;
+        background-color: rgba($black, 0.9);
+        text-overflow: ellipsis; /* Refer to this article for more understanding https://css-tricks.com/almanac/properties/t/text-overflow/ */
+        padding-left: 4rem;
+        white-space: nowrap;
+        overflow: hidden;
+        .play-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3rem;
+            height: 100%;
+            background-color: $primary-color;
+            text-align: center;
+            &:hover {
+                i {
+                    color: $white;
+                }
+            }
+            i {
+                color: $black;
+                line-height: 3rem;
+            }
+        }
+    }
+}
+.movies {
+    &.search-results {
+        min-height: 70vh;
+    }
+}
